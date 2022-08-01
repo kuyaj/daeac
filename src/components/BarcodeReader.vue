@@ -19,6 +19,7 @@ export default {
 
     let onDecode = function(text){
       console.log(`Decode text from QR code is ${text}`);
+      alert('The decoded qr code is '+text);
     }
 
     let onLoaded = function() {
