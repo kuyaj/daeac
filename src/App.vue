@@ -1,15 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <barcode-reader></barcode-reader>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BarcodeReader from './components/BarcodeReader.vue';
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    "barcode-reader": BarcodeReader
   }
 }
 </script>
