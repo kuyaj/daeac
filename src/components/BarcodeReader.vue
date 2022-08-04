@@ -15,11 +15,12 @@ import { reactive } from 'vue';
 export default {
   name: 'BarcodeReader',
   setup(){
-    let state = reactive({ message: "let it begin!"})
+    let state = reactive({ message: "QR decoded here.."})
 
     let onDecode = function(text){
-      console.log(`Decode text from QR code is ${text}`);
-      alert('The decoded qr code is '+text);
+      // alert('The decoded qr code is '+text);
+      state.message = text;
+      alert("QRMessage: "+text);
     }
 
     let onLoaded = function() {
