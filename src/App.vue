@@ -1,15 +1,19 @@
 <template>
-  <barcode-reader></barcode-reader>
+  <qr-display></qr-display>
+  <qr-scanner></qr-scanner>
+
 </template>
 
 <script>
-import BarcodeReader from './components/BarcodeReader.vue';
+import QRScanner from './components/QRScanner.vue';
+import QRDisplay from './components/QRDisplay.vue';
 
 
 export default {
   name: 'App',
   components: {
-    "barcode-reader": BarcodeReader
+    "qr-scanner": QRScanner,
+    "qr-display": QRDisplay
   }
 }
 </script>
@@ -19,8 +23,11 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+body {
+  margin: 0; 
+  background: rgba(0, 0, 0, 0.1);
 }
 </style>
