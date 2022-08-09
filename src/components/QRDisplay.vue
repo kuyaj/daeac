@@ -37,8 +37,6 @@ export default {
 </script>
 
 <style>
-
-
 .qr-code {
   border: 1px solid transparent;
   padding: 10px 10px;

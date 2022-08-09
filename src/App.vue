@@ -1,7 +1,6 @@
 <template>
-  <qr-display></qr-display>
   <qr-scanner></qr-scanner>
-
+  <qr-display></qr-display>
 </template>
 
 <script>
