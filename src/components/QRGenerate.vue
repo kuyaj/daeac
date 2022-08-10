@@ -1,38 +1,49 @@
 <template>
-    <div class="qr-display">
+<div class="qr-generate">
+  
       <div class="card">
+         <h2>QR GENERATE TEST APP</h2>
         <div class="card-content">
           <div class="input-field">
-             <input type="text" v-model="state.qr">
+             <!-- <input type="text" v-model="state.qrcode"> -->
           </div>
-        </div>
-       
-      </div>
-
-     <div class="card">
-       <div class="qr-code">
-           <qr-code :text="state.qr"></qr-code>
-      </div>
-     </div>
+       <div class="card-content">
+         <button >Generate QR</button>
+       </div>
+        {{ state.qrcode }}
+      <img :src="state.photo">
+    </div>
+</div>
       </div>
 </template>
 <script>
-import VueQRCodeComponent from 'vue-qr-generator';
-import { reactive } from 'vue';
+import { reactive, onMounted, } from 'vue';
+// import QRCode from '@keeex/qrcodejs-kx';
+import QRCode from 'qrcode';
 
 export default {
-  name: 'QRDisplay',
+  name: 'QRGenerate',
   setup(){
-    let state = reactive({ qr: "",})
+    
+    let state = reactive({ photo: "", qrcode: ""})
+    
+    onMounted(()=> {
+        QRCode.toDataURL('I am a pony!')
+        .then(url => {
+            console.log(url)
+            state.photo = url;
+        })
+        .catch(err => {
+            console.error(err)
+        })
+    })
 
-   
 
     return {
-      state,
+        state,
     }
   },
   components: {
-    "qr-code": VueQRCodeComponent,
   }
 }      
 </script>
@@ -88,5 +99,21 @@ export default {
       display: flex;
       flex-direction: row;
     }
+
+    button {
+        border-radius: 10px;  
+        margin-right: 4px;
+        outline: none;
+        width: 70px;
+        padding: 7px;  
+        background: transparent;
+        color: #2d3436;
+    }
+
+    img {
+        width: 200px;
+        height: 0px;
+    }
+   
 </style>
 

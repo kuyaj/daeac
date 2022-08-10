@@ -49,7 +49,7 @@ export default {
 
 .qrscanner {
   border: 1px solid transparent;
-  padding: 10px 10px;
+  padding: 5px 5px;
 }
 
 .card {

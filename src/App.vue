@@ -1,18 +1,21 @@
 <template>
-  <qr-scanner></qr-scanner>
-  <qr-display></qr-display>
+  <!-- <qr-scanner></qr-scanner> -->
+  <!-- <qr-display></qr-display> -->
+  <qr-generate></qr-generate>
 </template>
 
 <script>
-import QRScanner from './components/QRScanner.vue';
-import QRDisplay from './components/QRDisplay.vue';
+// import QRScanner from './components/QRScanner.vue';
+// import QRDisplay from './components/QRDisplay.vue';
+import QRGenerate from './components/QRGenerate.vue';
 
 
 export default {
   name: 'App',
   components: {
-    "qr-scanner": QRScanner,
-    "qr-display": QRDisplay
+    // "qr-scanner": QRScanner,
+    // "qr-display": QRDisplay,
+    "qr-generate": QRGenerate
   }
 }
 </script>
