@@ -3,44 +3,63 @@
   
       <div class="card">
          <h2>QR GENERATE TEST APP</h2>
-        <div class="card-content">
-          <div class="input-field">
-             <!-- <input type="text" v-model="state.qrcode"> -->
-          </div>
+      
        <div class="card-content">
-         <button >Generate QR</button>
+         <button @click="QRGenerate">Generate QR</button>
        </div>
-        {{ state.qrcode }}
-      <img :src="state.photo">
+        {{ state.qrcode }}    
+          <div class="card-content" v-show="state.qrimage !==''">
+            <a :href="state.qrimage" download="myqrcode.jpg">
+               <img :src="state.qrimage"/>
+            </a>
+            <a :href="state.qrimage" download="myqrcode.jpg">Download QR</a>
+          </div>
     </div>
 </div>
-      </div>
 </template>
 <script>
 import { reactive, onMounted, } from 'vue';
-// import QRCode from '@keeex/qrcodejs-kx';
 import QRCode from 'qrcode';
 
 export default {
   name: 'QRGenerate',
   setup(){
     
-    let state = reactive({ photo: "", qrcode: ""})
+    let state = reactive({ 
+        photo: "", 
+        qrcode: "i143mk22",
+        qrimage: ""  
+      })
     
     onMounted(()=> {
-        QRCode.toDataURL('I am a pony!')
-        .then(url => {
-            console.log(url)
-            state.photo = url;
-        })
-        .catch(err => {
-            console.error(err)
-        })
+  
+      // QRCode.toDataURL(state.qrcode, function (err, url) {
+      //     // state.qrimage = url;
+      
+      // })
     })
+
+    function QRGenerate(){
+       QRCode.toDataURL(state.qrcode, function (err, url) {
+          state.qrimage = url;
+      
+      })
+    }
+        // QRCode.toDataURL('I am a pony!')
+        // .then(url => {
+        //     console.log(url)
+        //     state.photo = url;
+        // })
+        // .catch(err => {
+        //     console.error(err)
+        // })
+
+   
 
 
     return {
         state,
+        QRGenerate
     }
   },
   components: {
@@ -112,7 +131,7 @@ export default {
 
     img {
         width: 200px;
-        height: 0px;
+        height:200px;
     }
    
 </style>
