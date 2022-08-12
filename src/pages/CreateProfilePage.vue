@@ -1,43 +1,26 @@
 <template>
-    <div class="qr-display">
-      <div class="card">
-        <div class="card-content">
-          <div class="input-field">
-             <input type="text" v-model="state.qr">
-          </div>
+    <div>
+        <div class="card">
+            <h1>Create Profile Page</h1>
         </div>
-       
-      </div>
-
-     <div class="card">
-       <div class="qr-code">
-           <qr-code :text="state.qr"></qr-code>
-      </div>
-     </div>
-      </div>
+        <div class="card">
+            <div class="card-content">
+                <div class="input-field">
+                    <input type="text" placeholder="Name">
+                </div>
+                <div class="input-field">
+                    <input type="text" placeholder="Age">
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 <script>
-import VueQRCodeComponent from 'vue-qr-generator';
-import { reactive } from 'vue';
-
 export default {
-  name: 'QRDisplay',
-  setup(){
-    let state = reactive({ qr: "",})
-
-   
-
-    return {
-      state,
-    }
-  },
-  components: {
-    "qr-code": VueQRCodeComponent,
-  }
-}      
+    name: "profile"
+}
 </script>
-
-<style>
+<style> 
 .qr-code {
   border: 1px solid transparent;
   padding: 5px 5px;
@@ -49,7 +32,6 @@ export default {
     border-radius: 3px;
     padding: 20px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    font-family: 'Shadows Into Light', cursive;
     margin-bottom: 5px;
     background: #fafafa;
     margin: 5px;
@@ -59,7 +41,6 @@ export default {
     border: transparent;
     padding: 10px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    font-family: 'Shadows Into Light', cursive;
     margin-bottom: 5px;
     background: #fafafa;
   }
@@ -86,5 +67,24 @@ export default {
       display: flex;
       flex-direction: row;
     }
-</style>
 
+    button {
+        border: 1px solid black;
+        border-radius: 3px;  
+        margin-right: 4px;
+        outline: none;
+        width: 70px;
+        padding: 7px;  
+        background: transparent;
+    }
+
+    img {
+        width: 200px;
+        height:200px;
+    }
+
+    a {
+       text-decoration: none;
+       color: #2d3436;
+    }
+</style>

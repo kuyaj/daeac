@@ -1,43 +1,17 @@
 <template>
-    <div class="qr-display">
-      <div class="card">
-        <div class="card-content">
-          <div class="input-field">
-             <input type="text" v-model="state.qr">
-          </div>
+    <div>
+        <div class="card">
+            <h1>HomePage</h1>
         </div>
-       
-      </div>
-
-     <div class="card">
-       <div class="qr-code">
-           <qr-code :text="state.qr"></qr-code>
-      </div>
-     </div>
-      </div>
+        
+    </div>
 </template>
 <script>
-import VueQRCodeComponent from 'vue-qr-generator';
-import { reactive } from 'vue';
-
 export default {
-  name: 'QRDisplay',
-  setup(){
-    let state = reactive({ qr: "",})
-
-   
-
-    return {
-      state,
-    }
-  },
-  components: {
-    "qr-code": VueQRCodeComponent,
-  }
-}      
+  name: "Home"
+}
 </script>
-
-<style>
+<style> 
 .qr-code {
   border: 1px solid transparent;
   padding: 5px 5px;
@@ -75,6 +49,8 @@ export default {
    .card-content .input-field input {
       border: transparent;
       border-radius: 3px;
+      font-family: 'Shadows Into Light', cursive;
+      font-size: 15px;
       background: #ecf0f1;
       padding: 10px;
       width: 100%;
@@ -86,5 +62,24 @@ export default {
       display: flex;
       flex-direction: row;
     }
-</style>
 
+    button {
+        border: 1px solid black;
+        border-radius: 3px;  
+        margin-right: 4px;
+        outline: none;
+        width: 70px;
+        padding: 7px;  
+        background: transparent;
+    }
+
+    img {
+        width: 200px;
+        height:200px;
+    }
+
+    a {
+       text-decoration: none;
+       color: #2d3436;
+    }
+</style>

@@ -1,21 +1,18 @@
 <template>
   <!-- <qr-scanner></qr-scanner> -->
   <!-- <qr-display></qr-display> -->
-  <qr-generate></qr-generate>
+  <qr-navbar></qr-navbar>
+   <router-view></router-view>
 </template>
 
 <script>
-// import QRScanner from './components/QRScanner.vue';
-// import QRDisplay from './components/QRDisplay.vue';
-import QRGenerate from './components/QRGenerate.vue';
+import QRNavbar from './components/mini/QRNavbar.vue';
 
 
 export default {
   name: 'App',
   components: {
-    // "qr-scanner": QRScanner,
-    // "qr-display": QRDisplay,
-    "qr-generate": QRGenerate
+    "qr-navbar": QRNavbar,
   }
 }
 </script>
@@ -25,7 +22,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
 }
 
 body {

@@ -2,12 +2,11 @@
 <div class="qr-generate">
   
       <div class="card">
-         <h2>QR GENERATE TEST APP</h2>
+         <h4>QR GENERATE TEST APP</h4>
       
        <div class="card-content">
          <button @click="QRGenerate">Generate QR</button>
-       </div>
-        {{ state.qrcode }}    
+       </div> 
           <div class="card-content" v-show="state.qrimage !==''">
             <a :href="state.qrimage" download="myqrcode.jpg">
                <img :src="state.qrimage"/>
@@ -89,7 +88,6 @@ export default {
     border: transparent;
     padding: 10px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    font-family: 'Shadows Into Light', cursive;
     margin-bottom: 5px;
     background: #fafafa;
   }
@@ -105,8 +103,6 @@ export default {
    .card-content .input-field input {
       border: transparent;
       border-radius: 3px;
-      font-family: 'Shadows Into Light', cursive;
-      font-size: 15px;
       background: #ecf0f1;
       padding: 10px;
       width: 100%;
@@ -120,18 +116,23 @@ export default {
     }
 
     button {
-        border-radius: 10px;  
+        border: 1px solid black;
+        border-radius: 3px;  
         margin-right: 4px;
         outline: none;
         width: 70px;
         padding: 7px;  
         background: transparent;
-        color: #2d3436;
     }
 
     img {
         width: 200px;
         height:200px;
+    }
+
+    a {
+       text-decoration: none;
+       color: #2d3436;
     }
    
 </style>
