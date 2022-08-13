@@ -48,42 +48,9 @@ export default {
 <style>
 
 .qrscanner {
-  border: 1px solid transparent;
+  border: 1px solid #dfe6e9;
+  border-radius: 5px;
   padding: 5px 5px;
 }
-
-.card {
-    border: transparent;
-    border-radius: 3px;
-    padding: 20px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    font-family: 'Shadows Into Light', cursive;
-    margin-bottom: 5px;
-    background: #fafafa;
-    margin: 5px;
-  }
-  
-  .card-header {
-    border: transparent;
-    padding: 10px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    margin-bottom: 5px;
-    background: #fafafa;
-  }
-  
-  
-  .card .card-content {
-    display: flex;
-    flex-direction: column;
-    border: transparent;
-    padding: 10px;
-  }
-  
-
-     .row {
-      display: flex;
-      flex-direction: row;
-    }
-
 </style>
 

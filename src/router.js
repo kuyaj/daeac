@@ -2,24 +2,37 @@
 
 
 import CreateProfile from "./pages/CreateProfilePage.vue";
-import Home from "./pages/HomePage.vue";
+import HomePage from "./pages/HomePage.vue";
+import QRScannerPage from "./pages/QRScannerPage.vue";
 
+import { createRouter, createWebHashHistory } from 'vue-router';
 
-import VueRouter from 'vue-router';
-
-const router = new VueRouter({
+   const router = createRouter({
+    history: createWebHashHistory(),
     routes :  [
+      {
+        path: '/',
+        name: "root",
+        redirect: {
+          name: "home"
+        }
+      },
       {
         path: "/home",
         name: "home",
-        component: Home,
+        component: HomePage,
       },
       {
         path: "/createprofile",
         name: "createprofile",
         component: CreateProfile,
       },
+      {
+        path: "/scannerpage",
+        name: "scannerpage",
+        component: QRScannerPage
+      }
 	  ]
-  })
+   })
 
   export default router

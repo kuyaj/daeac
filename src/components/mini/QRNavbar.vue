@@ -1,8 +1,8 @@
 <template>
     <div class="qr-navbar">
-        <a href="">Home</a>
-        <a href="">Create Profile</a>
-        <a href="">QR Scanner</a>
+      <router-link to="/home">Home</router-link>
+      <router-link to="/createprofile">Create Profile</router-link>
+      <router-link to="/scannerpage">QR Scanner</router-link>
     </div>
 </template>
 
