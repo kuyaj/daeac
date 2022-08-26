@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { db } from "../firebase.js";
+import { collection, getDocs } from "firebase/firestore"; 
 import { StreamBarcodeReader } from "vue-barcode-reader";
 import { reactive } from 'vue';
 
@@ -22,16 +24,26 @@ export default {
   setup(){
     let state = reactive({ message: "QR decoded here.."})
 
+  
     let onDecode = function(text){
 
-      state.message = text;
-      alert("QRMessage: "+state.message);
+      // state.message = text;
+      // alert("QRMessage: "+state.message);
+
+      var list = [];
+      const querySnapshot = await getDocs(collection(db, "employees"));
+            querySnapshot.forEach((doc) => {
+                let id = doc.id;
+      
+                list.push({...doc.data(),id })
+            });
+           let fetchData = list.filter(x => x.id == text);
+           alert(fetchData);
     
     }
 
     let onLoaded = function() {
-      console.log(`Ready to start scanning barcodes`);
-  
+      alert(`Ready to start scanning barcodes`);
     }
 
     return {

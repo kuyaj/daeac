@@ -35,10 +35,11 @@ export default {
 
             var list = [];
         
-    
             const querySnapshot = await getDocs(collection(db, "employees"));
             querySnapshot.forEach((doc) => {
-                list.push(doc.data())
+                let id = doc.id;
+                
+                list.push({...doc.data(),id })
                 state.display = list;
             });
      

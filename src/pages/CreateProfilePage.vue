@@ -5,9 +5,6 @@
         </div>
         <div class="card">
             <div class="card-content">
-                {{ state.name }} 
-                <br>
-                {{ state.age }}
                 <div class="input-field">
                     <input type="text" placeholder="Name" v-model="state.name">
                 </div>
@@ -33,7 +30,7 @@
 import { reactive } from 'vue';
 
 import { db } from '../firebase.js';
- 
+import { collection, addDoc } from "firebase/firestore"; 
 
 export default {
     name: "create-profile",
@@ -47,15 +44,22 @@ export default {
             })
 
 
-        function addToFirestore(){
-        
-            db.collection("employees").add({ 
-                name: "bar", 
-                age: "19"
-            })
-            .then(function(){
-                alert("Data has been posted!");
-            })
+        let addToFirestore = async function(){
+                
+                  try {
+                const docRef = await addDoc(collection(db, "employees"), {
+                    name: state.name ,
+                    age: state.age,
+                });
+
+                alert("Data posted! with ID: "+docRef.id);
+                state.name = "";
+                state.age = "";
+
+                } catch (e) {
+                console.error("Error adding document: ", e);
+                }
+         
         }
 
 
