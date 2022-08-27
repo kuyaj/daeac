@@ -1,6 +1,14 @@
 <template>
   <div>
-    <div class="card">
+    <div class="card" v-for="item in state.QRFetchData" :key="item" v-show="toggleDisplay">
+      <div class="card-content">
+        {{ item.name }} is {{ item.age }} years old.
+      </div>
+      <div class="card-content">
+        <button @click="toggleScanner">Scan Again</button>
+      </div>
+    </div>
+    <div class="card" v-show="state.toggleShow">
       <div class="card-content">
               <div class="qrscanner">
           <qr-reader
@@ -22,13 +30,10 @@ import { reactive } from 'vue';
 export default {
   name: 'QRSCanner',
   setup(){
-    let state = reactive({ message: "QR decoded here.."})
+    let state = reactive({ QRFetchData: "", toggleShow: true, toggleDisplay: true})
 
   
-    let onDecode = function(text){
-
-      // state.message = text;
-      // alert("QRMessage: "+state.message);
+    let onDecode = async function(text){
 
       var list = [];
       const querySnapshot = await getDocs(collection(db, "employees"));
@@ -38,18 +43,32 @@ export default {
                 list.push({...doc.data(),id })
             });
            let fetchData = list.filter(x => x.id == text);
-           alert(fetchData);
+           state.QRFetchData = fetchData;
+           state.toggleShow = false;
+           state.toggleDisplay = true;
     
+    }
+
+    let toggleScanner = function(){
+       state.toggleShow = true;
+    }
+
+    let toggleDisplay = function (){
+      state.toggleDisplay = false;
     }
 
     let onLoaded = function() {
       alert(`Ready to start scanning barcodes`);
     }
 
+   
+
     return {
       state,
       onDecode,
-      onLoaded
+      onLoaded, 
+      toggleScanner,
+      toggleDisplay
     }
   },
   components: {

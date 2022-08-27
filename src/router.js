@@ -5,6 +5,9 @@ import CreateProfile from "./pages/CreateProfilePage.vue";
 import HomePage from "./pages/HomePage.vue";
 import QRScannerPage from "./pages/QRScannerPage.vue";
 
+import EmployeePage from "./pages/EmployeeProfilePage.vue";
+
+
 import { createRouter, createWebHashHistory } from 'vue-router';
 
    const router = createRouter({
@@ -16,6 +19,11 @@ import { createRouter, createWebHashHistory } from 'vue-router';
         redirect: {
           name: "home"
         }
+      },
+      {
+        path: "/home/:id",
+        name: "employeepage",
+        component: EmployeePage
       },
       {
         path: "/home",

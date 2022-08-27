@@ -16,19 +16,19 @@
                         <button @click="addToFirestore">Add Data</button>
                     </div>
             </div>
-             <!-- <div class="card-content" v-show="state.qrimage !==''">
-                    <a :href="state.qrimage" download="myqrcode.jpg">
-                         <img :src="state.qrimage"/>
+             <div class="card-content" v-show="state.QRimage !==''">
+                    <a :href="state.QRimage" download="myqrcode.jpg">
+                         <img :src="state.QRimage"/>
                     </a>
-          </div> -->
+                    <a :href="state.QRimage" download="myqrcode.jpg">Download QR</a>
+          </div>
         </div>
     </div>
 </template>
 <script>
 // import { v4 as uuidv4 } from 'uuid';
-// import QRCode from 'qrcode';
+import QRCode from 'qrcode';
 import { reactive } from 'vue';
-
 import { db } from '../firebase.js';
 import { collection, addDoc } from "firebase/firestore"; 
 
@@ -40,7 +40,7 @@ export default {
         let state = reactive(
             { name: "",
               age: "", 
-              qrimage: ""
+              QRimage: ""
             })
 
 
@@ -51,6 +51,12 @@ export default {
                     name: state.name ,
                     age: state.age,
                 });
+
+              
+              QRCode.toDataURL(docRef.id, {width: 350}, function(err, url){
+                state.QRimage = url;
+              })
+    
 
                 alert("Data posted! with ID: "+docRef.id);
                 state.name = "";
@@ -63,12 +69,7 @@ export default {
         }
 
 
-        // function generateQR(){
-        //    QRCode.toDataURL(unique_id, function(err, url){
-        //         state.qrimage = url;
-        //    })
-        //}
-
+    
 
         return {
             addToFirestore,
