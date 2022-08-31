@@ -1,34 +1,42 @@
  /* eslint-disable */
 <template>
     <div>
-        <div class="card">
-            <h1>Employee Page</h1>
-            <div class="card-content">
-                {{ $route.params.id }} <br>
-            </div>
+          <div class="card">
+            <h1>Show Profile Page</h1>
         </div>
-    </div>
+          <div class="card">
+            {{ state.profile.id}}
+          </div>
+          <div class="card">
+            {{ state.profile.name }}
+          </div>
+          <div class="card">
+            {{ state.profile.age }}
+          </div>
+          
+        </div>
 </template>
 <script>
-// import { db } from '../firebase.js';
-import { onMounted } from 'vue';
-import { useRoute } from 'vue-router';
 
+import { reactive, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import { useProfileStore } from '@/store/profile';
 
 export default {
   name: "employee-page", 
   setup(){
 
-    // let state = reactive({ display:""})
+    let state = reactive({ profile: {} })
     let route = useRoute();
+    var userID = route.params.id;
+    const store = useProfileStore()
 
     onMounted(()=> {
-        alert(route.params.id);
+        state.profile = store.getDataById(userID);
     })
 
-
     return {
-    
+        state
     }
   }
 }

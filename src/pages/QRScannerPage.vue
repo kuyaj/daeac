@@ -9,10 +9,11 @@
 <script>
 import QRScanner from '../components/QRScanner.vue';
 
+
 export default {
   name: "scanner-page",
   components: {
-    "qr-scanner": QRScanner
+    "qr-scanner": QRScanner,
   }
 }
 </script>

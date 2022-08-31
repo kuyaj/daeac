@@ -23,6 +23,7 @@
                     <a :href="state.QRimage" download="myqrcode.jpg">Download QR</a>
           </div>
         </div>
+        <profile-roll></profile-roll>
     </div>
 </template>
 <script>
@@ -31,6 +32,7 @@ import QRCode from 'qrcode';
 import { reactive } from 'vue';
 import { db } from '../firebase.js';
 import { collection, addDoc } from "firebase/firestore"; 
+import QRProfileRoll from "../components/QRProfileRoll.vue";
 
 export default {
     name: "create-profile",
@@ -46,7 +48,7 @@ export default {
 
         let addToFirestore = async function(){
                 
-                  try {
+             try {
                 const docRef = await addDoc(collection(db, "employees"), {
                     name: state.name ,
                     age: state.age,
@@ -68,13 +70,13 @@ export default {
          
         }
 
-
-    
-
         return {
             addToFirestore,
             state
         }   
+    },
+    components: {
+        "profile-roll": QRProfileRoll
     }
 }
 </script>
