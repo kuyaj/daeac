@@ -2,10 +2,12 @@
 
 <template>
     <div>
-        <div class="card">
-            <h1>HomePage</h1>
+      <div class="card-header">
+              <h1>HomePage</h1>
+          </div>
+        <div class="container">
+          <profile-roll></profile-roll>
         </div>
-        <profile-roll></profile-roll>
     </div>
 </template>
 <script>
@@ -15,6 +17,6 @@ export default {
   components: {
     "profile-roll": QRProfileRoll
   }
-
 }
 </script>
+

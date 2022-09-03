@@ -4,9 +4,7 @@
 import CreateProfile from "./pages/CreateProfilePage.vue";
 import HomePage from "./pages/HomePage.vue";
 import QRScannerPage from "./pages/QRScannerPage.vue";
-
-import EmployeePage from "./pages/EmployeeProfilePage.vue";
-
+import ShowProfilePage from "./components/QRShowProfile.vue";
 
 import { createRouter, createWebHashHistory } from 'vue-router';
 
@@ -21,9 +19,9 @@ import { createRouter, createWebHashHistory } from 'vue-router';
         }
       },
       {
-        path: "/home/:id",
-        name: "employeepage",
-        component: EmployeePage
+        path: "/showprofile/:id",
+        name: "profilepage",
+        component: ShowProfilePage
       },
       {
         path: "/home",
@@ -39,7 +37,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
         path: "/scannerpage",
         name: "scannerpage",
         component: QRScannerPage
-      }
+      },
 	  ]
    })
 

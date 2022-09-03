@@ -1,14 +1,13 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import { db } from "../firebase";
+import { collection, doc } from "firebase/firestore"; 
+import { deleteDoc, getDocs } from 'firebase/firestore';
 
-import { collection, getDocs } from "firebase/firestore"; 
-import { doc, deleteDoc } from "firebase/firestore";
 
 export const useProfileStore = defineStore('profiles', () => {
    const profiles = ref("")
    const getDataById = computed(()=> (id) => profiles.value.find((x) => x.id == id));
-
 
     async function fetchFromFirebase(){
         var list = []
@@ -20,13 +19,13 @@ export const useProfileStore = defineStore('profiles', () => {
             });
     }
 
+
     async function deleteFromFirebase(itemID) {
         
-        let answer = confirm("Do you want to delete this data? SELAH!")
+        let answer = confirm("Do you want to delete this data?")
         if(answer == true){
                 await deleteDoc(doc(db, "employees",itemID));
-                alert("ID: "+itemID+" is deleted from Pinia store!");
-                window.location.reload();
+                alert("ID: "+itemID+" is deleted!");
                 return true;        
             }
             else {
@@ -34,24 +33,15 @@ export const useProfileStore = defineStore('profiles', () => {
             }
     }
 
-    // async function addFromFirebase() {
-              
+    // async function addToFirebase(state) {
     //     try {
     //         const docRef = await addDoc(collection(db, "employees"), {
     //             name: state.name ,
     //             age: state.age,
     //         });
-
-          
-    //       QRCode.toDataURL(docRef.id, {width: 350}, function(err, url){
-    //         state.QRimage = url;
-    //       })
-
-
+                
+             
     //         alert("Data posted! with ID: "+docRef.id);
-    //         state.name = "";
-    //         state.age = "";
-
     //         } catch (e) {
     //         console.error("Error adding document: ", e);
     //         }
@@ -59,5 +49,5 @@ export const useProfileStore = defineStore('profiles', () => {
 
 
   
-    return { getDataById, profiles, fetchFromFirebase, deleteFromFirebase }
+    return { getDataById, profiles, deleteFromFirebase, fetchFromFirebase }
   })

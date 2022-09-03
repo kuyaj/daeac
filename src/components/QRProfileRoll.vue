@@ -1,14 +1,11 @@
 <template>
     <div>
-         
-    <div class="card" v-for="item in state.display" :key="item">
+    
+      <div class="card" v-for="item in state.display" :key="item">
             {{ item.name }} ({{ item.age }})
             <br><br>
             <div class="card-content">
-                <button @click="deleteFromFirebase(item.id)">Delete</button>
-            </div>
-            <div class="card-content">
-                <button @click="routeToEmployeePage(item.id)">View</button>
+                <button @click="routeToEmployeePage(item.id)">view</button>
             </div>
         </div>
       
@@ -32,25 +29,24 @@ import { useProfileStore } from '@/store/profile';
 
             const store = useProfileStore()
             const { profiles } = storeToRefs(store)
-            const { 
-            fetchFromFirebase, 
-            deleteFromFirebase, 
-            } = store;
+            const { fetchFromFirebase} = store;
+            const { deleteFromFirebase } = store;
 
         
          onMounted(()=> {
             fetchFromFirebase();
             state.display = profiles;
+          
          })
 
         let routeToEmployeePage = function(id) {
-            router.push({name: "employeepage",params: { id }});
+            router.push({name: "profilepage", params: { id }});
         }
 
         return {
-            state,
-            deleteFromFirebase,
+            state, 
             routeToEmployeePage,
+            deleteFromFirebase
         }
     }
  }

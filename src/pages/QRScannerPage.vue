@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card">
+        <div class="card-header">
             <h1>QR Scanner Page</h1>
         </div>
         <qr-scanner></qr-scanner>
