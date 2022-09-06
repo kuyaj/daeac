@@ -4,11 +4,7 @@
         <div class="card-header">
             <h1>Show Profile</h1>
           </div>
-        
         <div class="container">
-            <div class="card">
-            {{ state.profile.id}}
-          </div>
           <div class="card">
             {{ state.profile.name }}
           </div>
@@ -31,8 +27,8 @@
   
             <button><a :href="state.QRPhoto" download="myqrcode.jpg"> 
                        download
-                    </a></button>
-                    <button @click="deleteUser(state.profile.id)">delete</button>
+                </a></button>
+            <button @click="deleteUser(state.profile)">delete</button>
           </div>
         </div>
         </div>
@@ -42,8 +38,10 @@
 import { reactive, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useProfileStore } from '@/store/profile';
-
 import QRCode from 'qrcode';
+
+import { storage } from "../firebase";
+import { ref, deleteObject } from 'firebase/storage'
 
 export default {
   name: "show-profile", 
@@ -51,15 +49,18 @@ export default {
 
     let state = reactive({ profile: {}, QRPhoto: ""})
     let route = useRoute();
-    let router = useRouter();
+    let router = useRouter(); 
     var userID = route.params.id;
     let store = useProfileStore();
     let { deleteFromFirebase } = store;
-
-    let deleteUser = function(id){
-      deleteFromFirebase(id);
+    
+    let deleteUser = function(profile){
+      deleteFromFirebase(profile.id);
+      let photoRef = ref(storage, profile.shUrl)
+      deleteObject(photoRef).then(()=> { console.log("Delete in storage")}).catch((err) => { console.log(err)});
       router.push({ name: "home"});
     }
+
 
     onMounted(()=> {
         state.profile = store.getDataById(userID);
@@ -70,6 +71,7 @@ export default {
     return {
         state, 
         deleteUser
+
     }
   }
 }

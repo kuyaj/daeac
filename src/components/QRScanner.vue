@@ -1,9 +1,8 @@
 <template>
   <div>
-  
     <div class="card">
       <div class="card-content">
-              <div class="qrscanner">
+        <div class="qrscanner">
           <qr-reader
             @decode="onDecode"
             @loaded="onLoaded"
@@ -47,6 +46,11 @@ export default {
   border: 1px solid #dfe6e9;
   border-radius: 5px;
   padding: 5px 5px;
+
 }
+
+
+
+
 </style>
 

@@ -19,6 +19,6 @@ export const useProfileStore = defineStore("profiles", {
                     this.profiles = list;
 
                 });
-        }
+        } 
     }
 })

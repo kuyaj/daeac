@@ -13,10 +13,13 @@
                 <div class="input-field">
                     <input type="text" placeholder="Age" v-model.trim="state.age">
                 </div>
+                <div class="card-content">
+                   <input type="file" placeholder="upload" @change="previewFile" multiple>
+                </div>
                 <br>
                     <div class="input-field">
                         <button @click="addToFirestore">add</button>
-                    </div>
+                    </div>  
             </div>
              <div class="card-content" v-show="state.QRimage !==''">
                     <a :href="state.QRimage" download="myqrcode.jpg">
@@ -24,15 +27,8 @@
                     </a>
                     <a :href="state.QRimage" download="myqrcode.jpg">Download QR</a>
           </div>
-          <div class="card-content">
-            <input type="file" placeholder="upload" @change="previewFile" multiple>
-          </div>
+          
         </div>
-        <div class="card">
-            <div class="card-content">
-                {{ state.file.name }} <br>
-            </div>
-          </div>
        </div>
     </div>
 </template>
@@ -45,9 +41,17 @@ import { collection, addDoc } from "firebase/firestore"
 // import QRCode from "qrcode";
 
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { useRouter } from "vue-router";
+
+
+import { useProfileStore } from "@/store/profile.js";
+
 export default {
     name: "create-profile",
     setup(){
+        let router = useRouter();
+        let store = useProfileStore();
+        let { realtimeFromFirebase } = store;
 
         let state = reactive(
             { name: "",
@@ -56,8 +60,6 @@ export default {
               file: "",
               photoUrl: ""
             })
-
-
 
         let checkIfEmpty = (input) => input.length > 0 ? true : false;
 
@@ -69,31 +71,32 @@ export default {
         let addToFirestore = function(){
        
             if(checkIfEmpty(state.name) && 
-            checkIfEmpty(state.age))
+            checkIfEmpty(state.age)) 
             { 
          try {
             let file = state.file;
+            let timestamp = Date.now()
             // const storageRef = ref(storage, "images/" + file.name);
             const storageRef = ref(storage, file.name);
             uploadBytes(storageRef, file).then(() => {
-
                 getDownloadURL(storageRef).then(async (url) => {
                     await addDoc(collection(db, "employees"), {
                         name: state.name ,
                         age: state.age,
-                        photoUrl: url
+                        photoUrl: url,
+                        shUrl: file.name, 
+                        timestamp:  timestamp
                     });
                 });
                
             })
-           
-            alert("Data posted! with ID:");
-    
-            
+         
+            realtimeFromFirebase();
+            router.push({ name: "home"});
+            alert("Data posted!");
             //   QRCode.toDataURL(docRef.id, {width: 350}, function(err, url){
             //       state.QRimage = url;
             //    })
-
             
             } catch (e) {
             console.error("Error adding document: ", e);

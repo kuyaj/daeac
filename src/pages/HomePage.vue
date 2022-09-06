@@ -8,15 +8,18 @@
         <div class="container">
           <profile-roll></profile-roll>
         </div>
+       
     </div>
 </template>
 <script>
 import QRProfileRoll from "../components/QRProfileRoll.vue";
+
 export default {
   name: "home-page", 
   components: {
-    "profile-roll": QRProfileRoll
+    "profile-roll": QRProfileRoll,
   }
 }
 </script>
 
+<style></style>

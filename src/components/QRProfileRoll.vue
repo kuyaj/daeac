@@ -2,7 +2,8 @@
     <div>
     
       <div class="card" v-for="item in state.display" :key="item">
-            {{ item.name }} ({{ item.age }})
+           name: {{ item.name }} <br>
+           age: {{ item.age }}
             <br><br>
             <div class="card-content">
                 <button @click="routeToEmployeePage(item.id)">view</button>
@@ -29,12 +30,12 @@ import { useProfileStore } from '@/store/profile';
 
             const store = useProfileStore()
             const { profiles } = storeToRefs(store)
-            const { fetchFromFirebase} = store;
+            const { realtimeFromFirebase } = store;
             const { deleteFromFirebase } = store;
 
         
          onMounted(()=> {
-            fetchFromFirebase();
+            realtimeFromFirebase();
             state.display = profiles;
           
          })

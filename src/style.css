@@ -6,8 +6,9 @@ body {
 }
 
 .container {
-  padding:10px;
+  margin: 4px 9em;
 }
+
 
 .card {
     border: transparent;
@@ -27,6 +28,7 @@ body {
     background: #fafafa;
     font-family: 'Qwitcher Grypen', cursive;
     font-size: 25px;
+    text-align: center;
   }
   
   
@@ -73,3 +75,13 @@ body {
        text-decoration: none;
        color: #2d3436;
     }
+
+    @media screen and (max-width: 600px) {
+      .container{
+          margin: 2px;
+      }
+      img {
+        width: 300px;
+        height:300px;
+    }
+    }  
